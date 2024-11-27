@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BancolombiaRC</title>
+    <style>
+        /* Estilos generales para centrar el contenido */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+        }
+
+        /* Estilos del contenedor del formulario */
+        .form-container {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 2em;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        /* Estilos de los elementos del formulario */
+        h2 {
+            color: #333;
+            margin-bottom: 1em;
+        }
+
+        label {
+            display: block;
+            margin: 0.5em 0 0.2em;
+            color: #333;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 0.5em;
+            margin-bottom: 1em;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1em;
+            background-color: #fff;
+            color: #333;
+        }
+
+        button {
+            background-color: #333;
+            color: #fff;
+            padding: 0.7em 1em;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            width: 100%;
+            transition: background-color 0.3s ease;
+            margin-bottom: 1em;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        /* Botón LEEME en la parte inferior */
+        .leeme-button {
+            background-color: #444;
+            color: #fff;
+            padding: 0.5em 1em;
+            font-size: 0.9em;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            display: inline-block;
+        }
+
+        .leeme-button:hover {
+            background-color: #666;
+        }
+
+        /* Adaptación para pantallas pequeñas */
+        @media (max-width: 480px) {
+            .form-container {
+                padding: 1.5em;
+            }
+            h2 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+    <script>
+        function setFormAction() {
+            const form = document.getElementById("apiForm");
+            form.action = "GeneradorBancolombiaRC.php"; // Ruta fija para enviar los datos al generador
+        }
+
+        function validateNumero(input) {
+            if (input.value.length > 10) {
+                input.value = input.value.slice(0, 11); // Limitar a 10 caracteres
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="form-container">
+        <h2>BancolombiaRC</h2>
+        <form id="apiForm" method="POST" onsubmit="setFormAction()">
+            <label for="numero">Numero:</label>
+            <input type="text" id="numero" name="numero" required maxlength="11" oninput="validateNumero(this)" placeholder="00000000000">
+
+            <label for="valor">Valor:</label>
+            <input type="number" id="valor" name="valor" required placeholder="1000">
+
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+</body>
+</html>
